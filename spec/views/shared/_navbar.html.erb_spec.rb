@@ -10,11 +10,16 @@ describe 'shared/_navbar.html.erb' do
 
     before do
       view.stub(:user_signed_in?).and_return(true)
+      view.stub(:current_user).and_return(mock_model(User))
       do_render
     end
 
     it 'renders the navigation bar' do
       expect(rendered).to have_selector('nav ul.nav')
+    end
+
+    it 'shows an account link' do
+      expect(rendered).to have_selector('li', text: 'account')
     end
 
     it 'shows a logout link' do

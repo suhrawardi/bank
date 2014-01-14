@@ -8,6 +8,10 @@ Bank::Application.routes.draw do
 
   devise_for :users
 
+  resources :users, only: %i() do
+    resources :accounts, only: %i(index)
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
