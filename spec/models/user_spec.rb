@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  context 'validations' do
+  describe 'validations' do
 
     subject do
       build(:user)
@@ -17,8 +17,19 @@ describe User do
       expect(subject).not_to be_valid
     end
 
+    it 'is not valid with a name that is not unique' do
+      subject.name = create(:user).name
+      expect(subject).not_to be_valid
+    end
+
     it 'is not valid without an email' do
       subject.email = nil
+      expect(subject).not_to be_valid
+    end
+
+    it 'is not valid with an email that is not unique' do
+      another_user = create(:user)
+      subject.email = another_user.email
       expect(subject).not_to be_valid
     end
 
@@ -30,6 +41,34 @@ describe User do
     it 'is not valid with an incorrect password confirmation' do
       subject.password_confirmation = 'blah'
       expect(subject).not_to be_valid
+    end
+  end
+
+  describe 'associations' do
+
+    subject do
+      build(:user)
+    end
+
+    it 'has an account' do
+      expect(subject).to respond_to(:account)
+    end
+  end
+
+  context 'bank account' do
+
+    it 'adds a bank account on creation' do
+      expect { create(:user) }.to change{Account.count}.by(1)
+    end
+
+    it 'destroys the bank account when the user is destroyed' do
+      user = create(:user)
+      expect { User.destroy(user) }.to change{ Account.count }.by(-1)
+    end
+
+    it 'initializes the bank account with a 100 euro balance' do
+      user = create(:user)
+      expect(user.account.balance).to eq(100)
     end
   end
 end
