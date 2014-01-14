@@ -12,26 +12,10 @@
     <div class="row">
       <h2>Your Bank</h2>
     </div>
-
-    <div class="row">
-      <nav class="navbar navbar-default" role="navigation">
-        <ul class="nav navbar-nav">
-          <li><%= link_to 'home', root_path %></li>
-          <%# if user_signed_in? %>
-            <li><%#= link_to 'logout', destroy_user_session_path %></li>
-          <%# else %>
-            <li><%#= link_to 'login', new_user_session_path %></li>
-          <%# end %>
-        </ul>
-      </nav>
-    </div>
   
-    <% unless flash.empty? %>
-      <div class="row">
-        <div class="alert alert-info notice"><%= notice %></p>
-        <div class="alert alert-info alert"><%= alert %></p>
-      </div>
-    <% end %>
+    <% render partial: 'shared/_navbar' %>
+  
+    <% render partial: 'shared/_flash' %>
 
     <%= yield %>
   </div>
