@@ -1,0 +1,12 @@
+# config/settings.yml
+defaults: &defaults
+  secret_token: 'place here a long long long long secret token'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

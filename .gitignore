@@ -18,3 +18,5 @@
 /coverage
 
 *.swp
+
+/config/settings.yml

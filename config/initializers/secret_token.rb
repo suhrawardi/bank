@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Bank::Application.config.secret_key_base = '89ccd67ce966be28b713c8cc796fc41e64f7123b04aa4c1eddf839ff220e004906d812a9c123253e67d9da8b494233d93b422b66e86fc3b96822c17c0f3d1b2d'
+Bank::Application.config.secret_key_base = Settings.secret_token
