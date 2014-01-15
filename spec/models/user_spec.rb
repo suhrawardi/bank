@@ -58,7 +58,7 @@ describe User do
   context 'bank account' do
 
     it 'adds a bank account on creation' do
-      expect { create(:user) }.to change{Account.count}.by(1)
+      expect { create(:user) }.to change{ Account.count }.by(1)
     end
 
     it 'destroys the bank account when the user is destroyed' do

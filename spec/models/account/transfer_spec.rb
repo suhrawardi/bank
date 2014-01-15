@@ -23,6 +23,12 @@ describe Account::Transfer do
         Account::Transfer.new(source, destination).transfer(16)
         expect(destination.balance).to eq(116)
       end
+
+      it 'logs the successful transaction' do
+        expect do
+          Account::Transfer.new(source, destination).transfer(46)
+        end.to change{ Transaction.where(status: 'success').count }.by(1)
+      end
     end
 
     context 'a failing transfer' do
@@ -37,9 +43,15 @@ describe Account::Transfer do
         expect(destination.reload.balance).to eq(100)
       end
 
+      it 'logs the failing transaction' do
+        expect do
+          Account::Transfer.new(source, destination).transfer(118) rescue nil
+        end.to change{ Transaction.where(status: 'failed').count }.by(1)
+      end
+
       it 'raises an error' do
         expect do
-          Account::Transfer.new(source, destination).transfer(118)
+          Account::Transfer.new(source, destination).transfer(108)
         end.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
