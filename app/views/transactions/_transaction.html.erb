@@ -1,7 +1,8 @@
-<tr class="<%= transaction.status -%>">
-  <td><%= transaction.status -%></td>
-  <td><%= transaction.source.user.name -%></td>
-  <td><%= transaction.destination.user.name -%></td>
-  <td><%= transaction.amount -%></td>
-  <td><%= transaction.msg -%></td>
-</tr>
+<div class="alert alert-info <%= transaction.status -%>">
+  Transferred <strong><%= transaction.amount -%></strong>
+  from <%= transaction.source.user.name -%> to
+  <%= transaction.destination.user.name -%>
+  <% if transaction.msg %>
+    <br /><%= transaction.msg -%>
+  <% end %>
+</div>

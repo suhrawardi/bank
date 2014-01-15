@@ -16,7 +16,7 @@ class Account::Transfer < DCI::Context
       log(amount: amount, status: :success)
     end
   rescue
-    log(amount: amount, status: :failed, msg: $!.to_s)
+    log(amount: amount, status: :danger, msg: $!.to_s)
     raise $!
   end
 

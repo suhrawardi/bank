@@ -15,12 +15,12 @@ describe 'shared/_flash.html.erb' do
 
     it 'renders the flash notice' do
       render 'shared/flash'
-      expect(rendered).to have_selector('.notice', text: 'a notice message')
+      expect(rendered).to have_selector('.success', text: 'a notice message')
     end
 
     it 'does not have an alert holder' do
       render 'shared/flash'
-      expect(rendered).not_to have_selector('.warning')
+      expect(rendered).not_to have_selector('.danger')
     end
   end
 
@@ -32,12 +32,12 @@ describe 'shared/_flash.html.erb' do
 
     it 'renders the flash alert' do
       render 'shared/flash'
-      expect(rendered).to have_selector('.warning', text: 'an alert message')
+      expect(rendered).to have_selector('.danger', text: 'an alert message')
     end
 
     it 'does not have a notice holder' do
       render 'shared/flash'
-      expect(rendered).not_to have_selector('.notice')
+      expect(rendered).not_to have_selector('.success')
     end
   end
 end

@@ -46,7 +46,7 @@ describe Account::Transfer do
       it 'logs the failing transaction' do
         expect do
           Account::Transfer.new(source, destination).transfer(118) rescue nil
-        end.to change{ Transaction.where(status: 'failed').count }.by(1)
+        end.to change{ Transaction.where(status: 'danger').count }.by(1)
       end
 
       it 'raises an error' do

@@ -36,15 +36,15 @@ describe Transaction do
     end
 
     subject(:with_source_account) do
-      Transaction.create!(source: account, status: :failed)
+      Transaction.create!(source: account, status: :danger)
     end
 
     subject(:with_destination_account) do
-      Transaction.create!(destination: account, status: :failed)
+      Transaction.create!(destination: account, status: :danger)
     end
 
     subject(:with_another_account) do
-      Transaction.create!(status: :failed)
+      Transaction.create!(status: :danger)
     end
 
     let(:transactions) do
