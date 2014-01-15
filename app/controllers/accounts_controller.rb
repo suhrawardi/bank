@@ -1,14 +1,9 @@
 class AccountsController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :only_allow_if_owned_by_current_user!
 
   def index
-    @account = user.account
-  end
-
-private
-
-  def user
-    User.find(params[:user_id])
+    @account = current_user.account
   end
 end
