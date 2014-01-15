@@ -26,7 +26,7 @@ describe Account do
   context 'after initialization' do
 
     subject do
-      Account.new
+      Account.create!
     end
 
     it 'has a 100 euro balance' do

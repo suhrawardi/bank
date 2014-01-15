@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
 
   after_create :create_account
 
+  scope :named, ->(name) { where(name: name) }
+
+  def self.by_name(name)
+    self.named(name).first
+  end
+
 end

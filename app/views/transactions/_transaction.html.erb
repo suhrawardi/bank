@@ -1,8 +1,13 @@
-<div class="alert alert-info <%= transaction.status -%>">
-  Transferred <strong><%= transaction.amount -%></strong>
-  from <%= transaction.source.user.name -%> to
-  <%= transaction.destination.user.name -%>
-  <% if transaction.msg %>
-    <br /><%= transaction.msg -%>
+<div class="alert alert-<%= transaction.status -%> well well-sm">
+  <%= time_ago_in_words(transaction.created_at) -%> ago,
+  <% if transaction.status == 'success' %>
+    transferred <%= transaction.amount -%> euro
+    from <%= transaction.source.user.name -%> to
+    <%= transaction.destination.user.name -%>
+  <% else %>
+    failed to transfer <%= transaction.amount -%> euro
+    from <%= transaction.source.user.name -%> to
+    <%= transaction.destination.user.name -%>:
+    <%= transaction.msg -%>
   <% end %>
 </div>

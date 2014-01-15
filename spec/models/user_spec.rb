@@ -71,4 +71,31 @@ describe User do
       expect(user.account.balance).to eq(100)
     end
   end
+
+  context '#named' do
+
+    before do
+      @maarten = create(:user, name: 'maarten')
+      @monic = create(:user, name: 'monic')
+    end
+
+    it 'finds the users with the correct name' do
+      expect(User.named('maarten')).to include(@maarten)
+    end
+
+    it 'does not find users with another name' do
+      expect(User.named('maarten')).not_to include(@monic)
+    end
+  end
+
+  context '#named' do
+
+    before do
+      @carla = create(:user, name: 'carla')
+    end
+
+    it 'finds only one user with the correct name' do
+      expect(User.by_name('carla')).to eq(@carla)
+    end
+  end
 end

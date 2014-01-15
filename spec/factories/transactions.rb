@@ -6,5 +6,6 @@ FactoryGirl.define do
     association :destination, factory: :account
     status :danger
     msg 'something got wrong!'
+    created_at Time.now
   end
 end

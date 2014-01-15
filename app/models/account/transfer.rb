@@ -5,14 +5,17 @@ class Account::Transfer < DCI::Context
   role source_account: Account::Withdraw
   role destination_account: Account::Deposit
 
-  def initialize(source_account, destination_account)
-    self.source_account = @source = source_account
-    self.destination_account = @destination = destination_account
+  def initialize(source, destination)
+    if source.nil? or destination.nil?
+      raise ActiveRecord::RecordNotFound, 'User not found'
+    end
+    self.source_account = @source = source.account
+    self.destination_account = @destination = destination.account
   end
 
   def transfer(amount)
     ActiveRecord::Base.transaction do
-      roles.each{ |role| role.transfer(amount) }
+      roles.each{ |role| role.transfer(amount.to_i) }
       log(amount: amount, status: :success)
     end
   rescue

@@ -7,7 +7,7 @@ class Account < ActiveRecord::Base
   validates :balance, presence: true
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
-  after_initialize :initialize_balance
+  before_create :initialize_balance
 
   def transactions
     Transaction.for_account(self)

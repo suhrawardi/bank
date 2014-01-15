@@ -1,3 +1,7 @@
 <div class="row">
-  <p>Transfer to some-one else:</p>
+  <%= form_tag user_transfers_path(current_user) do %>
+    Transfer <%= text_field_tag 'amount', nil, placeholder: 'amount' %>
+    to <%= text_field_tag 'name', nil, placeholder: 'username' %>
+    <%= button_tag 'Transfer' %>
+  <% end %>
 </div>

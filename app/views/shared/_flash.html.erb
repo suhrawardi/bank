@@ -1,10 +1,10 @@
 <% unless notice.blank? and alert.blank? %>
   <div class="row">
     <% unless notice.blank? %>
-      <div class="alert alert-info success"><%= notice %></div>
+      <div class="alert alert-success"><%= notice %></div>
     <% end %>
     <% unless alert.blank? %>
-      <div class="alert alert-info danger"><%= alert %></div>
+      <div class="alert alert-danger"><%= alert %></div>
     <% end %>
   </div>
 <% end %>
