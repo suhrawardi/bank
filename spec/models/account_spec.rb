@@ -22,4 +22,15 @@ describe Account do
       expect(subject).not_to be_valid
     end
   end
+
+  context 'after initialization' do
+
+    subject do
+      Account.new
+    end
+
+    it 'has a 100 euro balance' do
+      expect(subject.balance).to eq(100)
+    end
+  end
 end

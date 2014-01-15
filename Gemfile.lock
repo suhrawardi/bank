@@ -54,6 +54,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    dci (0.2.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -180,6 +181,7 @@ DEPENDENCIES
   brakeman
   capybara
   coffee-rails (~> 4.0.0)
+  dci
   devise
   factory_girl
   factory_girl_rails

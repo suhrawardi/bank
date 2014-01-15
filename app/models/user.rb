@@ -10,11 +10,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  after_create :open_bank_account
+  after_create :create_account
 
-protected
-
-  def open_bank_account
-    Account.create!(balance: 100, user: self)
-  end
 end
