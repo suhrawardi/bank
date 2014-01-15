@@ -10,6 +10,7 @@ Bank::Application.routes.draw do
 
   resources :users, only: %i() do
     resources :accounts, only: %i(index)
+    resources :transfers, only: %i(new create)
   end
 
   # Example of regular route:

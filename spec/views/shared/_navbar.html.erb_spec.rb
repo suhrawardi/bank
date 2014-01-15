@@ -2,16 +2,12 @@ require 'spec_helper'
 
 describe 'shared/_navbar.html.erb' do
 
-  def do_render
-    render template: 'shared/_navbar', handlers: [:erb]
-  end
-
   context 'a user who is logged in' do
 
     before do
       view.stub(:user_signed_in?).and_return(true)
       view.stub(:current_user).and_return(mock_model(User))
-      do_render
+      render 'shared/navbar'
     end
 
     it 'renders the navigation bar' do
@@ -31,7 +27,7 @@ describe 'shared/_navbar.html.erb' do
 
     before do
       view.stub(:user_signed_in?).and_return(false)
-      do_render
+      render 'shared/navbar'
     end
 
     it 'renders the navigation bar' do

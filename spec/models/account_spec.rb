@@ -33,4 +33,16 @@ describe Account do
       expect(subject.balance).to eq(100)
     end
   end
+
+  describe '#transactions' do
+
+    subject do
+      Account.new
+    end
+
+    it 'asks the Transaction class to fetch the transactions' do
+      expect(Transaction).to receive(:for_account).with(subject)
+      subject.transactions
+    end
+  end
 end

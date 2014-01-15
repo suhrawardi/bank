@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe Transaction do
 
-  context 'validations' do
+  subject do
+    build(:transaction)
+  end
 
-    subject do
-      build(:transaction)
-    end
+  context 'validations' do
 
     it 'is valid' do
       expect(subject).to be_valid
@@ -19,10 +19,6 @@ describe Transaction do
   end
 
   context 'associations' do
-
-    subject do
-      build(:transaction)
-    end
 
     it 'has a source account' do
       expect(subject).to respond_to(:source)

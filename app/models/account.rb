@@ -9,6 +9,10 @@ class Account < ActiveRecord::Base
 
   after_initialize :initialize_balance
 
+  def transactions
+    Transaction.for_account(self)
+  end
+
 protected
 
   def initialize_balance

@@ -2,6 +2,9 @@
 
 FactoryGirl.define do
   factory :transaction do
+    association :source, factory: :account
+    association :destination, factory: :account
     status :failed
+    msg 'something got wrong!'
   end
 end

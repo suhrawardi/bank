@@ -2,12 +2,8 @@ require 'spec_helper'
 
 describe 'shared/_flash.html.erb' do
 
-  def do_render
-    render template: 'shared/_flash', handlers: [:erb]
-  end
-
   it 'renders nothing' do
-    do_render
+    render 'shared/flash'
     expect(rendered).to be_empty
   end
 
@@ -18,12 +14,12 @@ describe 'shared/_flash.html.erb' do
     end
 
     it 'renders the flash notice' do
-      do_render
+      render 'shared/flash'
       expect(rendered).to have_selector('.notice', text: 'a notice message')
     end
 
     it 'does not have an alert holder' do
-      do_render
+      render 'shared/flash'
       expect(rendered).not_to have_selector('.warning')
     end
   end
@@ -35,12 +31,12 @@ describe 'shared/_flash.html.erb' do
     end
 
     it 'renders the flash alert' do
-      do_render
+      render 'shared/flash'
       expect(rendered).to have_selector('.warning', text: 'an alert message')
     end
 
     it 'does not have a notice holder' do
-      do_render
+      render 'shared/flash'
       expect(rendered).not_to have_selector('.notice')
     end
   end
